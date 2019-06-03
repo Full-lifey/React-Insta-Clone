@@ -5,7 +5,7 @@ function SearchBar (props) {
     return (
         <div className='search-bar'>
             <div className='logo-group'>
-                <a href='/'></a>
+                {/* <a href='/'>Instagram</a> */}
             </div>
             <div className='search'>
                 <form>

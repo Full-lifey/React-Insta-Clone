@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import dummyData from './dummy-data';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -14,13 +13,12 @@ class App extends React.Component {
   }
 
   render(){
-    console.log(this.state.data)
     return (
       <div className="App">
         <SearchBar />
         {this.state.data.map(post => {
           return (
-            
+            <PostContainer key={post.id} post={post} />
           )
         })}
       </div>

@@ -1,55 +1,89 @@
-import React from 'react';
-import CommentSection from '../CommentSection/CommentSection';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+import React from "react";
+import CommentSection from "../CommentSection/CommentSection";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
 
-import './PostContainer.scss'
+import "./PostContainer.scss";
 
-const PostContainer = props => {
-    // console.log(props.post.thumbnailUrl)
+class PostContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: this.props.post.comments,
+      newComment: ""
+    };
+  }
+
+  handleCommentInput = event => {
+    this.setState({
+      newComment: event.target.value
+    });
+  };
+
+  addNewComment = (event, index) => {
+    event.preventDefault();
+    // console.log(this.props.post)
+    // console.log(this.props.post.comments.length)
+    const newComment = {
+      id: this.props.post.comments.length + 1,
+      username: "UsernamesR4Punks",
+      text: this.state.newComment
+    };
+    // this.props.addNewComment(this.state.newComment, this.props.post.comments.length)
+    this.setState({
+      comments: [...this.state.comments, newComment],
+      newComment: ""
+    });
+  };
+
+  render() {
     return (
-        <div className='post-container'>
-            <div className='post-header'>
-                <img src={props.post.thumbnailUrl} alt={props.post.username} />
-                <h5>{props.post.username}</h5>
-            </div>
-            <div className='post-image'>
-                <img src={props.post.imageUrl} alt='post' />
-            </div>
-            <div className='action-btns'>
-                <FontAwesomeIcon icon={faHeart} size='2x' />
-                <FontAwesomeIcon icon={faComment} size='2x' />
-            </div>
-            <div className='likes'>{props.post.likes} likes</div>
-            <div className='comment-container'>
-                {props.post.comments.map(comment => {
-                    return (
-                        <CommentSection key={comment.id} comment={comment} />
-                    )
-                })}
-            </div>
-            <p className='timestamp'>{props.post.timestamp}</p>
-            <form>
-                <input placeholder='Add a comment...' />
-            </form>
+      <div className="post-container">
+        <div className="post-header">
+          <img
+            src={this.props.post.thumbnailUrl}
+            alt={this.props.post.username}
+          />
+          <h5>{this.props.post.username}</h5>
         </div>
-    )
+        <div className="post-image">
+          <img src={this.props.post.imageUrl} alt="post" />
+        </div>
+        <div className="action-btns">
+          <FontAwesomeIcon icon={faHeart} size="2x" />
+          <FontAwesomeIcon icon={faComment} size="2x" />
+        </div>
+        <div className="likes">{this.props.post.likes} likes</div>
+        <div className="comment-container">
+          <CommentSection comments={this.state.comments} />
+        </div>
+        <p className="timestamp">{this.props.post.timestamp}</p>
+        <form onSubmit={this.addNewComment}>
+          <input
+            placeholder="Add a comment..."
+            onChange={this.handleCommentInput}
+            value={this.state.newComment}
+          />
+        </form>
+      </div>
+    );
+  }
 }
 
 PostContainer.propTypes = {
-    post: PropTypes.shape({
-        thumbnailUrl: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
-        imageUrl: PropTypes.string.isRequired,
-        likes: PropTypes.number,
-        comments: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number,
-                username: PropTypes.string,
-                text: PropTypes.string
-            })
-        )
-    })
-}
-export default PostContainer
+  post: PropTypes.shape({
+    thumbnailUrl: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    likes: PropTypes.number,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        username: PropTypes.string,
+        text: PropTypes.string
+      })
+    )
+  })
+};
+export default PostContainer;

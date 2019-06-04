@@ -2,14 +2,34 @@ import React from 'react';
 
 import './CommentSection.scss';
 
-const CommentSection = props => {
-    return (
-        <div className={`comment ${props.comment.id}`}>
-            <h5>{props.comment.username}</h5>
-            <p>{props.comment.text}</p>
-            {/* <p className='timestamp'>{props.timestamp}</p> */}
-        </div>
-    )
+class CommentSection extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            comments: this.props.comments
+        }
+    }
+
+    componentDidUpdate(){
+        
+    }
+    addNewComment = (event) => {
+        event.preventDefault();
+       
+    }
+    render() {
+        console.log('Rendering Comments', this.state.comments)
+        return (
+            this.props.comments.map(comment => {
+                return (
+                    <div key={comment.id} className={`comment ${comment.id}`}>
+                        <h5>{comment.username}</h5>
+                        <p>{comment.text}</p>
+                    </div>
+                )
+            })
+        )
+    }
 }
 
 export default CommentSection;

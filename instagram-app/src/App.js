@@ -25,13 +25,17 @@ class App extends React.Component {
     })
   }
 
+  addNewComment = (event, index) => {
+
+  }
+
   render(){
     return (
       <div className="App">
         <SearchBar handleSearch={this.handleSearch}/>
         {this.state.data.map(post => {
           return (
-            <PostContainer key={post.id} post={post} />
+            <PostContainer key={post.id} post={post} addNewComment={this.addNewComment}/>
           )
         })}
       </div>

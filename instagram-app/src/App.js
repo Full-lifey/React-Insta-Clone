@@ -8,14 +8,27 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: dummyData
+      data: []
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      data: dummyData
+    })
+  }
+
+  handleSearch = searchTerm => {
+    const newState = this.state.data.filter(post => post.username === searchTerm)
+    this.setState({
+      data: newState
+    })
   }
 
   render(){
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar handleSearch={this.handleSearch}/>
         {this.state.data.map(post => {
           return (
             <PostContainer key={post.id} post={post} />

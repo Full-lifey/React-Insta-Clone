@@ -1,6 +1,10 @@
 import React from 'react';
 import CommentSection from '../CommentSection/CommentSection';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+
+import './PostContainer.scss'
 
 const PostContainer = props => {
     // console.log(props.post.thumbnailUrl)
@@ -8,12 +12,15 @@ const PostContainer = props => {
         <div className='post-container'>
             <div className='post-header'>
                 <img src={props.post.thumbnailUrl} alt={props.post.username} />
-                <p>{props.post.username}</p>
+                <h5>{props.post.username}</h5>
             </div>
             <div className='post-image'>
                 <img src={props.post.imageUrl} alt='post' />
             </div>
-            <div className='action-btns'>heart reply</div>
+            <div className='action-btns'>
+                <FontAwesomeIcon icon={faHeart} size='2x' />
+                <FontAwesomeIcon icon={faComment} size='2x' />
+            </div>
             <div className='likes'>{props.post.likes} likes</div>
             <div className='comment-container'>
                 {props.post.comments.map(comment => {
@@ -22,6 +29,10 @@ const PostContainer = props => {
                     )
                 })}
             </div>
+            <p className='timestamp'>{props.post.timestamp}</p>
+            <form>
+                <input placeholder='Add a comment...' />
+            </form>
         </div>
     )
 }

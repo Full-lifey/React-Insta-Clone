@@ -1,9 +1,21 @@
 .search-bar{
+    width: 800px;
+    max-width: 100%;
+    margin: 15px auto;
     display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #efefef;
+    padding: 26px 60px;
     .logo-group{
         background-image: url('https://www.instagram.com/static/images/branding/logoWhiteoutLockup.png/3a62b1a95da3.png');
         background-size: 100%;
         height: 35px;
         width: 176px;
+    }
+    .container-right{
+        display: flex;
+        svg{
+            margin-left: 10px;
+        }
     }
 }

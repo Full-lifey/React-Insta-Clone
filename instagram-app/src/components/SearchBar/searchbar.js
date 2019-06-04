@@ -1,5 +1,7 @@
 import React from 'react';
 import './SearchBar.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCompass, faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
 
 function SearchBar (props) {
     return (
@@ -13,9 +15,9 @@ function SearchBar (props) {
                 </form>
             </div>
             <div className='container-right'>
-                <div>Compass</div>
-                <div>Heart</div>
-                <div>Person</div>
+                <FontAwesomeIcon icon={faCompass} size='2x' />
+                <FontAwesomeIcon icon={faHeart} size='2x' />
+                <FontAwesomeIcon icon={faUser} size='2x' />
             </div>
         </div>
     )

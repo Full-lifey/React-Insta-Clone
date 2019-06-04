@@ -30,9 +30,13 @@
   .likes {
     font-weight: bold;
     margin-left: 10px;
+    margin-bottom: 5px;
+  }
+  .comment-container{
+      margin-left: 10px;
   }
   .timestamp {
-    margin-top: 0px;
+    margin: 0 0 0 10px;
     font-weight: 200;
   }
   form {

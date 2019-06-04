@@ -19,10 +19,10 @@ class SearchBar extends React.Component {
 
     performSearch = event => {
         event.preventDefault();
-        this.props.handleSearch(this.state.searchTerm);
         this.setState({
-            searchTerm: ''
+            searchTerm: event.target.value
         })
+        this.props.handleSearch(this.state.searchTerm);
     }
 
     render(){
@@ -33,10 +33,10 @@ class SearchBar extends React.Component {
                     {/* <a href='/'>Instagram</a> */}
                 </div>
                 <div className='search'>
-                    <form onSubmit={this.performSearch}>
+                    <form onSubmit={e => e.preventDefault()}>
                         <input 
-                        placeholder='Search'
-                        onChange={this.handleFormInput}
+                        placeholder="&#x1f50d;&nbsp;&nbsp;Search"
+                        onChange={this.performSearch}
                         value={this.state.searchTerm}
                         />
                     </form>

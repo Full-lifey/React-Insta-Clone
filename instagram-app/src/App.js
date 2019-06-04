@@ -19,15 +19,12 @@ class App extends React.Component {
   }
 
   handleSearch = searchTerm => {
-    const newState = this.state.data.filter(post => post.username === searchTerm)
+    const newState = this.state.data.filter(post => post.username.includes(searchTerm))
     this.setState({
       data: newState
     })
   }
 
-  addNewComment = (event, index) => {
-
-  }
 
   render(){
     return (

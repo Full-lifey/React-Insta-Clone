@@ -11,7 +11,8 @@ class PostContainer extends React.Component {
     super(props);
     this.state = {
       comments: this.props.post.comments,
-      newComment: ""
+      newComment: "",
+      likes: this.props.post.likes
     };
   }
 
@@ -37,6 +38,19 @@ class PostContainer extends React.Component {
     });
   };
 
+  likePost = event => {
+    event.target.classList.toggle('liked')
+    if (event.target.classList.contains('liked')){
+        this.setState(prevState => {
+            return {
+                likes: prevState.likes+1
+            }})
+    } else this.setState(prevState => {
+        return {
+            likes: prevState.likes-1
+        }})
+  }
+
   render() {
     return (
       <div className="post-container">
@@ -51,10 +65,15 @@ class PostContainer extends React.Component {
           <img src={this.props.post.imageUrl} alt="post" />
         </div>
         <div className="action-btns">
-          <FontAwesomeIcon icon={faHeart} size="2x" />
+          <FontAwesomeIcon 
+            className='like-heart'
+            onClick={this.likePost}
+            icon={faHeart} 
+            size="2x"
+            />
           <FontAwesomeIcon icon={faComment} size="2x" />
         </div>
-        <div className="likes">{this.props.post.likes} likes</div>
+        <div className="likes">{this.state.likes} likes</div>
         <div className="comment-container">
           <CommentSection comments={this.state.comments} />
         </div>

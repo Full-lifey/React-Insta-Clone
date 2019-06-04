@@ -9,16 +9,8 @@ class CommentSection extends React.Component {
             comments: this.props.comments
         }
     }
-
-    componentDidUpdate(){
-        
-    }
-    addNewComment = (event) => {
-        event.preventDefault();
-       
-    }
     render() {
-        console.log('Rendering Comments', this.state.comments)
+        // console.log('Rendering Comments', this.state.comments)
         return (
             this.props.comments.map(comment => {
                 return (

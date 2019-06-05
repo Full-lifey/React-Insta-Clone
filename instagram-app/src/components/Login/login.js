@@ -1,6 +1,8 @@
 import React from 'react';
 
-class Login {
+import './login.scss'
+
+class Login extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -14,11 +16,15 @@ class Login {
             username: this.state.username,
             password: this.state.password
         }))
+        this.setState({
+            username: '',
+            password: ''
+        })
     }
 
     handleLoginInput = e => {
         this.setState({
-            [event.target.name]: event.target.value
+            [e.target.name]: e.target.value
         })
     }
     render(){

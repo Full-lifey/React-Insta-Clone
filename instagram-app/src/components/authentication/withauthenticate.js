@@ -9,6 +9,13 @@ const withAuthenticate = PostsPage => LoginPage =>
       };
     }
 
+    logOut = () => {
+        localStorage.removeItem('isLoggedIn')
+        this.setState({
+            loggedIn: false
+        })
+    }
+
     componentDidMount(){
         if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
             this.setState({
@@ -23,7 +30,7 @@ const withAuthenticate = PostsPage => LoginPage =>
 
     render() {
         if (this.state.loggedIn === true){
-            return <PostsPage />;
+            return <PostsPage logOut={this.logOut}/>;
         } else {
             return <LoginPage />
         }

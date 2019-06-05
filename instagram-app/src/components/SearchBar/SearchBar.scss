@@ -17,5 +17,10 @@
         svg{
             margin-left: 10px;
         }
+        .logout{
+            &:hover{
+                color: red;
+            }
+        }
     }
 }

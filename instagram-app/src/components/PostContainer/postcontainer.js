@@ -24,17 +24,17 @@ class PostContainer extends React.Component {
 
   addNewComment = (event, index) => {
     event.preventDefault();
-    // console.log(this.props.post)
-    // console.log(this.props.post.comments.length)
+    console.log(this.props.post.comments.length)
     const newComment = {
-      id: this.props.post.comments.length + 1,
-      username: "UsernamesR4Punks",
+      id: this.state.comments.length + 1,
+      username: JSON.parse(localStorage.getItem('isLoggedIn')).username,
       text: this.state.newComment
     };
-    // this.props.addNewComment(this.state.newComment, this.props.post.comments.length)
-    this.setState({
-      comments: [...this.state.comments, newComment],
-      newComment: ""
+    this.setState(prevState => {
+        return {
+            comments: [...prevState.comments, newComment],
+            newComment: ""
+        }
     });
   };
 

@@ -44,7 +44,12 @@ class SearchBar extends React.Component {
                 <div className='container-right'>
                     <FontAwesomeIcon icon={faCompass} size='2x' />
                     <FontAwesomeIcon icon={faHeart} size='2x' />
-                    <FontAwesomeIcon icon={faUser} size='2x' />
+                    <FontAwesomeIcon
+                        icon={faUser}
+                        size='2x'
+                        onClick={this.props.logOut}
+                        className='logout'
+                        />
                 </div>
             </div>
         )

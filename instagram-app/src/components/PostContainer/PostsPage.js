@@ -23,12 +23,14 @@ class PostsPage extends React.Component {
           data: newState
         })
       }
+
+
     
     
       render(){
         return (
           <div className="App">
-            <SearchBar handleSearch={this.handleSearch}/>
+            <SearchBar handleSearch={this.handleSearch} logOut={this.props.logOut}/>
             {this.state.data.map(post => {
               return (
                 <PostContainer key={post.id} post={post} addNewComment={this.addNewComment}/>

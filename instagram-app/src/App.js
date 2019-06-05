@@ -3,38 +3,34 @@ import './App.scss';
 import dummyData from './dummy-data';
 import SearchBar from './components/SearchBar/SearchBar';
 import PostContainer from './components/PostContainer/PostContainer';
+import PostsPage from './components/PostContainer/PostsPage';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: []
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     data: []
+  //   }
+  // }
 
-  componentDidMount() {
-    this.setState({
-      data: dummyData
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     data: dummyData
+  //   })
+  // }
 
-  handleSearch = searchTerm => {
-    const newState = this.state.data.filter(post => post.username.includes(searchTerm))
-    this.setState({
-      data: newState
-    })
-  }
+  // handleSearch = searchTerm => {
+  //   const newState = this.state.data.filter(post => post.username.includes(searchTerm))
+  //   this.setState({
+  //     data: newState
+  //   })
+  // }
 
 
   render(){
     return (
       <div className="App">
-        <SearchBar handleSearch={this.handleSearch}/>
-        {this.state.data.map(post => {
-          return (
-            <PostContainer key={post.id} post={post} addNewComment={this.addNewComment}/>
-          )
-        })}
+        <PostsPage />
       </div>
     );
   }

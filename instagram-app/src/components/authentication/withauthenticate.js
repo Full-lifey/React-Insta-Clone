@@ -1,6 +1,6 @@
 import React from 'react';
 
-const withAuthenticate = Component => {
+const withAuthenticate = Component => 
     class extends React.Component{
 
         render(){
@@ -9,4 +9,6 @@ const withAuthenticate = Component => {
             )
         }
     }
-}
+
+
+export default withAuthenticate;

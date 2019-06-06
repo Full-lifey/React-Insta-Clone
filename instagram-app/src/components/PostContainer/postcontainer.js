@@ -3,82 +3,83 @@ import CommentSection from "../CommentSection/CommentSection";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faComment } from "@fortawesome/free-regular-svg-icons";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 // Create Post Container styled components
 const PostContainerDiv = styled.div`
-    border: 1px solid #efefef;
-    width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-    margin-bottom: 30px;
-     .post-image {
-        width: 100%;
-        img {
-            width: 100%;
-        }
+  border: 1px solid #efefef;
+  width: 700px;
+  margin: 100px auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  .post-image {
+    width: 100%;
+    img {
+      width: 100%;
     }
+  }
 
-    .likes {
+  .likes {
     font-weight: bold;
     margin-left: 10px;
     margin-bottom: 5px;
     font-size: 22px;
-    }
-    .comment-container{
-        margin-left: 10px;
-    }
-    .timestamp {
+  }
+  .comment-container {
+    margin-left: 10px;
+  }
+  .timestamp {
     margin: 0 0 0 10px;
     font-weight: 200;
-    }
+  }
 `;
 
 const PostHeaderDiv = styled.div`
-    height: 60px;
-    display: flex;
-    border-bottom: 1px solid #efefef;
-    img {
-        height: 50%;
-        border-radius: 50%;
-        margin: 15px;
-    }
-    h5 {
-        line-height: 65px;
-    }
-`
+  height: 60px;
+  display: flex;
+  border-bottom: 1px solid #efefef;
+  img {
+    height: 50%;
+    border-radius: 50%;
+    margin: 15px;
+  }
+  h5 {
+    line-height: 65px;
+  }
+`;
 
 const ActionButtonsDiv = styled.div`
-    margin: 10px;
-    .liked{
-        color: red;
+  margin: 10px;
+  cursor: pointer;
+  .liked {
+    color: red;
+  }
+  svg {
+    margin-right: 10px;
+    &:hover {
+      color: red;
     }
-    svg {
-        margin-right: 10px;
-        &:hover{
-        color: red;
-        }
-    }
-`
+  }
+`;
 
 const AddButtonForm = styled.form`
-    border-top: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  width: 100%;
+  height: 40px;
+  input {
     width: 100%;
-    height: 40px;
-    input{
-        width: 100%;
-        height: 90%;
-        padding: 10px;
-        border: none;
-        :focus{
-            outline-width: 0;
-        }
+    height: 90%;
+    padding: 10px;
+    border: none;
+    :focus {
+      outline-width: 0;
     }
-`
+  }
+`;
 
-// Post Container class 
+// Post Container class
 class PostContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -95,34 +96,37 @@ class PostContainer extends React.Component {
     });
   };
 
-  addNewComment = (event) => {
+  addNewComment = event => {
     event.preventDefault();
-    console.log(this.props.post.comments.length)
+    console.log(this.props.post.comments.length);
     const newComment = {
       id: this.state.comments.length + 1,
-      username: JSON.parse(localStorage.getItem('isLoggedIn')).username,
+      username: JSON.parse(localStorage.getItem("isLoggedIn")).username,
       text: this.state.newComment
     };
     this.setState(prevState => {
-        return {
-            comments: [...prevState.comments, newComment],
-            newComment: ""
-        }
+      return {
+        comments: [...prevState.comments, newComment],
+        newComment: ""
+      };
     });
   };
 
   likePost = event => {
-    event.target.classList.toggle('liked')
-    if (event.target.classList.contains('liked')){
-        this.setState(prevState => {
-            return {
-                likes: prevState.likes+1
-            }})
-    } else this.setState(prevState => {
+    event.target.classList.toggle("liked");
+    if (event.target.classList.contains("liked")) {
+      this.setState(prevState => {
         return {
-            likes: prevState.likes-1
-        }})
-  }
+          likes: prevState.likes + 1
+        };
+      });
+    } else
+      this.setState(prevState => {
+        return {
+          likes: prevState.likes - 1
+        };
+      });
+  };
 
   render() {
     return (
@@ -138,12 +142,12 @@ class PostContainer extends React.Component {
           <img src={this.props.post.imageUrl} alt="post" />
         </div>
         <ActionButtonsDiv className="action-btns">
-          <FontAwesomeIcon 
-            className='like-heart'
+          <FontAwesomeIcon
+            className="like-heart"
             onClick={this.likePost}
-            icon={faHeart} 
+            icon={faHeart}
             size="2x"
-            />
+          />
           <FontAwesomeIcon icon={faComment} size="2x" />
         </ActionButtonsDiv>
         <div className="likes">{this.state.likes} likes</div>

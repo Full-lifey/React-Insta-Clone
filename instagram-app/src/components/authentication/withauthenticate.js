@@ -29,11 +29,11 @@ const withAuthenticate = PostsPage => LoginPage =>
     }
 
     render() {
-        if (this.state.loggedIn === true){
-            return <PostsPage logOut={this.logOut}/>;
-        } else {
-            return <LoginPage />
-        }
+        return(
+        this.state.loggedIn === true ?
+            <PostsPage logOut={this.logOut}/>:        
+            <LoginPage />
+        )
     }
   };
 

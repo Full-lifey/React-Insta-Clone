@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Form, Input} from 'reactstrap'
 
 import './login.scss'
 
@@ -29,21 +30,23 @@ class Login extends React.Component{
     }
     render(){
         return(
-            <form className='login-form' onSubmit={this.login}>
-                <input
+            <Form className='login-form' onSubmit={this.login}>
+                <Input
+                type='username'
                 className='username-field'
                 placeholder='Username'
                 onChange={this.handleLoginInput}
                 name='username'
                 />
-                <input
+                <Input
+                type='password'
                 className='password-field'
                 placeholder='Password'
                 onChange={this.handleLoginInput}
                 name='password'
                 />
-                <button>Login</button>
-            </form>
+                <Button color='primary' size='lg'>Login</Button>
+            </Form>
         )
     }
 }

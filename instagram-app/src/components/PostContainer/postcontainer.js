@@ -53,6 +53,7 @@ const PostHeaderDiv = styled.div`
 const ActionButtonsDiv = styled.div`
   margin: 10px;
   cursor: pointer;
+  user-select: none;
   .liked {
     color: red;
   }
